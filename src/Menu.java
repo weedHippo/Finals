@@ -25,6 +25,8 @@ public class Menu {
                 case 3:
                     Remove();
                     break;
+                case 4:
+                    Edit();
                 default:
                     System.out.println("Invalid choice");
 
@@ -87,6 +89,10 @@ public class Menu {
         }catch(InputMismatchException e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public void Edit() {
+        //test
     }
 
 }
