@@ -27,6 +27,7 @@ public class Menu {
                     break;
                 case 4:
                     Edit();
+                    break;
                 default:
                     System.out.println("Invalid choice");
 
@@ -92,9 +93,14 @@ public class Menu {
     }
 
     public void Edit() {
-        System.out.println("Enter the Item Id you want to edit: ");
+        System.out.print("Enter the Item Id you want to edit: ");
         int itemID = input.nextInt();
-        sr.Edit(itemID);
+        input.nextLine();
+        System.out.print("Enter the new Item Name: ");
+        String itemName = input.nextLine();
+        System.out.print("Enter the new Item Quantity: ");
+        int itemQuantity = input.nextInt();
+        sr.Edit(itemID, itemName, itemQuantity);
         // Implementation for editing an item goes here
     }
 

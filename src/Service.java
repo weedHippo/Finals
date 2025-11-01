@@ -37,7 +37,7 @@ public class Service {
 
     public void remove(int inp){
        if(Inv.containsKey(inp)){
-           System.out.println("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
+           System.out.print("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
            System.out.print("Your Choice: ");
            String op = input.next();
 
@@ -54,7 +54,17 @@ public class Service {
 
     }
 
-    public void Edit(int inp){
-        //do the edit logic here, thanks :3.
+    public void Edit(int inp, String item, int quan) {
+        try{
+            if(userInputs.contains(inp)){
+                Inv.put(inp, item);
+                Quan.put(inp, quan);
+            System.out.println("Item is now edited!");
+            } else if(!userInputs.contains(inp)){
+                System.out.println("Item does not exist!");
+            }
+        }catch(Exception e){
+            System.out.println("Error!");
+        }
     }
 }
