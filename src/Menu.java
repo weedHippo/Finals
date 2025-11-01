@@ -1,11 +1,10 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
     Scanner input = new Scanner(System.in);
     Service sr = new Service();
     public void mMenu(){
-        while(true){
+        do {
             System.out.println("Inv management");
             System.out.println("1. list Inventory");
             System.out.println("2. Add Item");
@@ -15,7 +14,7 @@ public class Menu {
             System.out.print("Enter your choice: ");
             int choice = input.nextInt();
 
-            switch(choice){
+            switch (choice) {
                 case 1:
                     sr.DisplayAll();
                     break;
@@ -32,7 +31,7 @@ public class Menu {
                     System.out.println("Invalid choice");
 
             }
-        }
+        } while (true);
     }
 
     public void Add() {
