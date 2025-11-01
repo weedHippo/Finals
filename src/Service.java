@@ -52,6 +52,9 @@ public class Service {
 
 
 
+    }
 
+    public void Edit(int inp){
+        //do the edit logic here, thanks :3.
     }
 }

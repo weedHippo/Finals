@@ -92,8 +92,11 @@ public class Menu {
     }
 
     public void Edit() {
-        //test
-        //test2
+        System.out.println("Please enter the ID of the item you want to edit");
+        int itemID = input.nextInt();
+        /*continues the Ui and the rest :3
+        Chao.
+         */
     }
 
 }
