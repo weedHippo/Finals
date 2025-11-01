@@ -94,6 +94,7 @@ public class Menu {
     public void Edit() {
         System.out.println("Enter the Item Id you want to edit: ");
         int itemID = input.nextInt();
+        sr.Edit(itemID);
         // Implementation for editing an item goes here
     }
 
