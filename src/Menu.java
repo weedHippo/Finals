@@ -6,20 +6,20 @@ public class Menu {
     public void mMenu(){
         do {
             System.out.println("Inv management");
-            System.out.println("1. list Inventory");
-            System.out.println("2. Add Item");
-            System.out.println("3. Remove Item");
-            System.out.println("4. Edit Item");
+            System.out.println("1. Add an Item");
+            System.out.println("2. list Items");
+            System.out.println("3. Remove an Item");
+            System.out.println("4. Edit an Item");
             System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
             int choice = input.nextInt();
 
             switch (choice) {
                 case 1:
-                    sr.DisplayAll();
+                    Add();
                     break;
                 case 2:
-                    Add();
+                    sr.DisplayAll();
                     break;
                 case 3:
                     Remove();
@@ -62,7 +62,7 @@ public class Menu {
             }
         } catch (InputMismatchException e) {
             System.out.println("Invalid input — please enter numbers for ID and quantity only.");
-            input.nextLine(); // clear invalid input buffer
+            input.nextLine();
         } catch (NullPointerException e) {
             System.out.println("Unexpected null value encountered.");
         }

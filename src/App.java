@@ -7,6 +7,7 @@ public class App {
             -switch the list and add items
             -add any features you think will work
             -Feel free to fix or modify the code
+            -add item and ID cap,
             -add comment for like review i guess
             -make read.md?
             - I guess review the code fore presentation
