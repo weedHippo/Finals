@@ -59,7 +59,7 @@ public class Service {
                 Inv.put(inp, item);
                 Quan.put(inp, quan);
             System.out.println("Item is now edited!");
-            } else if(!userInputs.contains(inp)){
+            } else{
                 System.out.println("Item does not exist!");
             }
         }catch(Exception e){
