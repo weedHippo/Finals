@@ -3,9 +3,10 @@ public class App {
         /*
         ====================================================
                             HEY GUYS
+
+                TO DO
+            ___________________________
             -Try to make it pretty
-            -switch the list and add items
-            -add any features you think will work
             -Feel free to fix or modify the code
             -add item and ID cap,
             -add comment for like review i guess
