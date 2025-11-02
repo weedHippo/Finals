@@ -1,4 +1,4 @@
-public class Main {
+public class App {
     public static void main(String[] args) {
         /*
         ====================================================
@@ -10,6 +10,7 @@ public class Main {
             -add comment for like review i guess
             -make read.md?
             - I guess review the code fore presentation
+       =======================================================
          */
         Menu menu = new Menu();
         menu.mMenu();
