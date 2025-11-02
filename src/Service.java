@@ -19,8 +19,7 @@ public class Service {
     public void AddItem(String item, int ID, int quan) {
         Inv.put(ID, item);
         Quan.put(ID, quan);
-        userInputs.add(ID); // store the ID for later reference
-
+        userInputs.add(ID);
         System.out.println("\nItem added successfully!");
         System.out.println("ID: " + ID + " | Name: " + item + " | Quantity: " + quan);
     }
