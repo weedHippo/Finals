@@ -28,7 +28,7 @@ public class Menu {
                     Edit();
                     break;
                 case 5:
-                    System.out.println("Goodbye!");
+                    System.out.println("Goodbye!!");
                     System.exit(0);
                 default:
                     System.out.println("Invalid choice");
