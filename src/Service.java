@@ -5,7 +5,7 @@ public class Service {
    private HashMap<Integer,String> Inv = new HashMap<>();
    private HashMap<Integer,Integer> Quan = new HashMap<>();
    private ArrayList<Integer> userInputs = new ArrayList<>();
-
+   boolean easterEgg = false;
     public void setInv(HashMap<Integer, String> inv) {
         this.Inv = inv;
     }
@@ -31,8 +31,14 @@ public class Service {
             int quantity = Quan.getOrDefault(id, 0);
             System.out.println("ID: " + id + " | Name: " + name + " | Quantity: " + quantity);
         }
+        if (easterEgg == false) {
+            System.out.println("Achievement get: Keeping Inventory");
+            easterEgg = true;
+        }
+
         System.out.println("--------------------------");
         System.out.println("\n");
+
     }
 
     public void remove(int inp){
