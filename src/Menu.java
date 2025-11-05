@@ -97,6 +97,7 @@ public class Menu {
     }
 
     public void Edit() {
+        //instead of editing the quantity how bout like manually add or dubtract quan idk
         System.out.print("Enter the Item Id you want to edit: ");
         int itemID = input.nextInt();
         input.nextLine();
