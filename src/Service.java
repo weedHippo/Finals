@@ -21,7 +21,7 @@ public class Service {
         Quan.put(ID, quan);
         userInputs.add(ID);
         System.out.println("\nItem added successfully!");
-        System.out.println("ID: " + ID + " | Name: " + item + " | Quantity: " + quan);
+        System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
     }
 
     public void DisplayAll() {
@@ -32,6 +32,7 @@ public class Service {
             System.out.println("ID: " + id + " | Name: " + name + " | Quantity: " + quantity);
         }
         System.out.println("--------------------------");
+        System.out.println("\n");
     }
 
     public void remove(int inp){

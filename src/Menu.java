@@ -5,13 +5,15 @@ public class Menu {
     Service sr = new Service();
     public void mMenu(){
         do {
-            System.out.println("Inv management");
-            System.out.println("1. Add an Item");
-            System.out.println("2. list Items");
-            System.out.println("3. Remove an Item");
-            System.out.println("4. Edit an Item");
-            System.out.println("5. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("==========  -Inventory Manager-  ==========");
+            System.out.println("\t1. Add an Item");
+            System.out.println("\t2. list Items");
+            System.out.println("\t3. Remove an Item");
+            System.out.println("\t4. Edit an Item");
+            System.out.println("\t5. Exit");
+            System.out.println("====================================");
+            System.out.print("\tEnter your choice: ");
+            System.out.println("\n====================================");
             int choice = input.nextInt();
 
             switch (choice) {
@@ -46,7 +48,7 @@ public class Menu {
                 int itemID = input.nextInt();
                 input.nextLine();
 
-                System.out.print("Item Name: ");
+                System.out.print("Product Name: ");
                 String itemName = input.nextLine();
 
                 System.out.print("Item quantity: ");
@@ -56,7 +58,7 @@ public class Menu {
                 sr.AddItem(itemName, itemID, itemQuantity);
                 System.out.println("Item added successfully!");
 
-                System.out.print("Add another item? Y/N: ");
+                System.out.print("\nAdd another item? Y/N: ");
                 String choice = input.nextLine();
 
                 if (choice.equalsIgnoreCase("N")) {
