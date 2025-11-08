@@ -17,11 +17,13 @@ public class Service {
         this.userInputs = userInputs;
     }
 
+
+    //fix the bug: not it says item save but its not displaying anything
     public void AddItem(String item, int ID, int quan) {
 
         try{
 
-            if(ID >= 1000 && ID <= 9999 || quan >= 50 && quan <= 999) {
+            if(ID >= 1000 && ID <= 9999 && quan >= 50 && quan <= 999) {
                 userInputs.add(ID);
                 System.out.println("\nItem added successfully!");
                 System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
