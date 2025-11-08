@@ -74,25 +74,21 @@ public class Menu {
     }
 
     public void Remove() {
-        try{
-            while (true) {
-                System.out.println("Warning: youre about to remove an item in the inventory" + "\n Type Y to proceed, press N to return to the Menu");
-                System.out.print("Y/N: ");
-                String choice = input.nextLine();
-                if (choice.equalsIgnoreCase("N")) {
-                    System.out.println("returning to the main menu...");
-                    break;
-                }else if (choice.equalsIgnoreCase("Y")) {
-                    System.out.println("Enter the Id of the item you want to remove: ");
-                    System.out.print("Item ID: ");
-                    int itemID = input.nextInt();
-                    sr.remove(itemID);
-                }else {
-                    System.out.println("Invalid input");
-                }
+        while (true) {
+            System.out.println("Warning: youre about to remove an item in the inventory" + "\n Type Y to proceed, press N to return to the Menu");
+            System.out.print("Y/N: ");
+            String choice = input.nextLine();
+            if (choice.equalsIgnoreCase("N")) {
+                System.out.println("returning to the main menu...");
+                break;
+            } else if (choice.equalsIgnoreCase("Y")) {
+                System.out.println("Enter the Id of the item you want to remove: ");
+                System.out.print("Item ID: ");
+                int itemID = input.nextInt();
+                sr.remove(itemID);
+            } else {
+                System.out.println("Invalid input");
             }
-        }catch(InputMismatchException e){
-            System.out.println(e.getMessage());
         }
     }
 
