@@ -13,7 +13,6 @@ public class Menu {
             System.out.println("\t5. Exit");
             System.out.println("====================================");
             System.out.print("\tEnter your choice: ");
-            System.out.println("\n====================================");
             int choice = input.nextInt();
 
             switch (choice) {
@@ -43,7 +42,6 @@ public class Menu {
         try {
             while (true) {
                 System.out.println("Please enter the name and ID of the item you want to add");
-
                 System.out.print("Item ID: ");
                 int itemID = input.nextInt();
                 input.nextLine();
@@ -55,8 +53,8 @@ public class Menu {
                 int itemQuantity = input.nextInt();
                 input.nextLine();
 
+
                 sr.AddItem(itemName, itemID, itemQuantity);
-                System.out.println("Item added successfully!");
 
                 System.out.print("\nAdd another item? Y/N: ");
                 String choice = input.nextLine();
@@ -64,6 +62,7 @@ public class Menu {
                 if (choice.equalsIgnoreCase("N")) {
                     break;
                 }
+
             }
         } catch (InputMismatchException e) {
             System.out.println("Invalid input — please enter numbers for ID and quantity only.");
@@ -101,6 +100,8 @@ public class Menu {
         String itemName = input.nextLine();
         System.out.print("Enter the new Item Quantity: ");
         int itemQuantity = input.nextInt();
+        assert itemID >= 1000 && itemID <= 9999: "Id out of bounds";
+        assert itemQuantity >= 50 &&  itemQuantity <= 999: "Quantity out of bounds";
         sr.Edit(itemID, itemName, itemQuantity);
     }
 
