@@ -18,13 +18,15 @@ public class Service {
     }
 
 
-    //fix the bug: not it says item save but its not displaying anything
+    //fix the bug: not it says item save but its not displaying anything when the error is triggered
     public void AddItem(String item, int ID, int quan) {
 
         try{
 
             if(ID >= 1000 && ID <= 9999 && quan >= 50 && quan <= 999) {
                 userInputs.add(ID);
+                Inv.put(ID, item);
+                Quan.put(ID, quan);
                 System.out.println("\nItem added successfully!");
                 System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
 
