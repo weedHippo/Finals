@@ -6,7 +6,6 @@ public class Service {
    private HashMap<Integer,Integer> Quan = new HashMap<>();
    private ArrayList<Integer> userInputs = new ArrayList<>();
    boolean easterEgg = false;
-   boolean capExceed = true;
     public void setInv(HashMap<Integer, String> inv) {
         this.Inv = inv;
     }
