@@ -18,7 +18,6 @@ public class Service {
     }
 
 
-    //fix the bug: not it says item save but its not displaying anything when the error is triggered
     public void AddItem(String item, int ID, int quan) {
 
         try{
