@@ -17,7 +17,7 @@ public class Service {
     }
 
 
-    public void AddItem(String item, int ID, int quan) {
+   public void AddItem(String item, int ID, int quan) {
 
         try{
 
@@ -37,6 +37,11 @@ public class Service {
         }
 
     }
+
+    //commented out: for ref and complexity sake
+    /*public void AddItem(String item, int ID, int quan, int category) {
+
+    }*/
 
     public void DisplayAll() {
         System.out.println("\n--- Current Inventory ---");

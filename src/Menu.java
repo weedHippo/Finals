@@ -49,6 +49,8 @@ public class Menu {
                 System.out.print("Product Name: ");
                 String itemName = input.nextLine();
 
+                System.out.print("Procuct type: ");
+
                 System.out.print("Item quantity: ");
                 int itemQuantity = input.nextInt();
                 input.nextLine();
@@ -71,6 +73,42 @@ public class Menu {
             System.out.println("Unexpected null value encountered.");
         }
     }
+
+    //commented out: for ref and complexity sake
+   /* public void Add(){
+        try{
+            while(true){
+                System.out.println("Choose a product category");
+                System.out.println("1. Produce");
+                System.out.println("2. Canned");
+                System.out.println("3. Frozen");
+                System.out.println("4. Deli");
+                System.out.println("5. Dairy");
+                System.out.println("6. Baked Goods");
+                System.out.println("Choose: ");
+                int choice = input.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        System.out.println("Please enter the name and ID of the item you want to add");
+                        System.out.print("Item ID: ");
+                        int itemID = input.nextInt();
+                        input.nextLine();
+
+                        System.out.print("Product Name: ");
+                        String itemName = input.nextLine();
+
+                        System.out.print("Procuct type: ");
+
+                        System.out.print("Item quantity: ");
+                        int itemQuantity = input.nextInt();
+                        input.nextLine();
+
+                }
+            }
+        }
+    }
+    */
 
     public void Remove() {
         while (true) {
