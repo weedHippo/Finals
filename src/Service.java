@@ -6,6 +6,7 @@ public class Service {
    private HashMap<Integer,Integer> Quan = new HashMap<>();
    private ArrayList<Integer> userInputs = new ArrayList<>();
    boolean easterEgg = false;
+   boolean Error = false;
     public void setInv(HashMap<Integer, String> inv) {
         this.Inv = inv;
     }
@@ -20,17 +21,21 @@ public class Service {
    public void AddItem(String item, int ID, int quan) {
 
         try{
+            while(true){
+                if(ID >= 1000 && ID <= 9999 && quan >= 50 && quan <= 999) {
+                    userInputs.add(ID);
+                    Inv.put(ID, item);
+                    Quan.put(ID, quan);
+                    System.out.println("\nItem added successfully!");
+                    System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
 
-            if(ID >= 1000 && ID <= 9999 && quan >= 50 && quan <= 999) {
-                userInputs.add(ID);
-                Inv.put(ID, item);
-                Quan.put(ID, quan);
-                System.out.println("\nItem added successfully!");
-                System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
 
-            } else{
-                System.out.println("The ID or quantity you entered is out of bounds");
+                } else{
+                    System.out.println("The ID or quantity you entered is out of bounds");
+                }
             }
+
+
 
         } catch(InputMismatchException e){
             System.out.println(e.getMessage());
@@ -38,10 +43,6 @@ public class Service {
 
     }
 
-    //commented out: for ref and complexity sake
-    /*public void AddItem(String item, int ID, int quan, int category) {
-
-    }*/
 
     public void DisplayAll() {
         System.out.println("\n--- Current Inventory ---");
