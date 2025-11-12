@@ -81,6 +81,7 @@ public class Service {
            }
        } else {
            System.out.println("Item not found!");
+           System.out.println("Enter the proper ID and try again");
        }
 
 
