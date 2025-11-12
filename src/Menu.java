@@ -78,6 +78,7 @@ public class Menu {
             System.out.print("Y/N: ");
             String choice = input.nextLine();
             input.nextLine();
+
             if (choice.equalsIgnoreCase("N")) {
                 System.out.println("returning to the main menu...");
                 break;

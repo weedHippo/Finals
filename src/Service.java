@@ -22,20 +22,24 @@ public class Service {
 
         try{
             while(true){
+                if(Inv.containsKey(ID)){
+                    System.out.println("Item with that ID already exists!");
+                    break;
+                }
+
                 if(ID >= 1000 && ID <= 9999 && quan >= 50 && quan <= 999) {
                     userInputs.add(ID);
                     Inv.put(ID, item);
                     Quan.put(ID, quan);
                     System.out.println("\nItem added successfully!");
                     System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
+                    break;
 
 
                 } else{
                     System.out.println("The ID or quantity you entered is out of bounds");
                 }
             }
-
-
 
         } catch(InputMismatchException e){
             System.out.println(e.getMessage());
@@ -63,7 +67,7 @@ public class Service {
 
     public void remove(int inp){
        if(Inv.containsKey(inp)){
-           System.out.print("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
+           System.out.println("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
            System.out.print("Your Choice: ");
            String op = input.next();
 
