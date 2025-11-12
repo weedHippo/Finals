@@ -69,6 +69,7 @@ public class Service {
     public void remove(int inp){
        if(Inv.containsKey(inp)){
            System.out.println("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
+           System.out.println("Process is irreversable");
            System.out.print("Your Choice Y/N: ");
            String op = input.next();
 
