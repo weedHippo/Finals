@@ -68,13 +68,13 @@ public class Service {
     public void remove(int inp){
        if(Inv.containsKey(inp)){
            System.out.println("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
-           System.out.print("Your Choice: ");
+           System.out.print("Your Choice Y/N: ");
            String op = input.next();
 
            if(op.equals("Y")){
                Inv.remove(inp);
            } else if(op.equals("N")){
-               System.out.println("Action Cencelled");
+               System.out.println("Action Cancelled");
            }
        } else {
            System.out.println("Item not found!");
@@ -84,6 +84,8 @@ public class Service {
 
     }
 
+
+    //hello
     public void Edit(int inp, String item, int quan) {
         try{
             if(userInputs.contains(inp)){
