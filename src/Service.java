@@ -24,6 +24,7 @@ public class Service {
             while(true){
                 if(Inv.containsKey(ID)){
                     System.out.println("Item with that ID already exists!");
+                    System.err.println("Try Again");
                     break;
                 }
 
