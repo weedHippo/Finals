@@ -38,6 +38,7 @@ public class Service {
 
                 } else{
                     System.out.println("The ID or quantity you entered is out of bounds");
+                    break;
                 }
             }
 
