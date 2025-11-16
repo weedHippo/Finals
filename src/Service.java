@@ -118,8 +118,6 @@ public class Service extends DataManager {
     public void Edit(int inp, String item, int quan) {
         try{
             if(userInputs.contains(inp)){
-                //Inv.put(inp, item);
-                //Quan.put(inp, quan);
                 super.EditLoad(item, quan, inp);
                 super.EditWrite(inp);
             System.out.println("Item is now edited!");
