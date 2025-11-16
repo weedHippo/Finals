@@ -2,10 +2,13 @@ import java.util.*;
 
 public class Menu {
     Scanner input = new Scanner(System.in);
-    Service sr = new Service();
+    private final Service sr;
+
+    public Menu(Service sr) {
+        this.sr = sr;
+    }
     public void mMenu(){
         do {
-            sr.preLoad();
             System.out.println("==========  -Inventory Manager-  ==========");
             System.out.println("\t1. Add an Item");
             System.out.println("\t2. list Items");
@@ -74,7 +77,7 @@ public class Menu {
     }
     public void Remove() {
         while (true) {
-            System.out.println("Warning: youre about to remove an item in the inventory" + "\n Type Y to proceed, press N to return to the Menu");
+            System.out.println("Warning: you're about to remove an item in the inventory" + "\n Type Y to proceed, press N to return to the Menu");
             System.out.print("Y/N: ");
             String choice = input.nextLine();
             input.nextLine();
@@ -92,9 +95,7 @@ public class Menu {
             }
         }
     }
-    //jo
     public void Edit() {
-        //instead of editing the quantity how bout like manually add or subtract quan idk
         System.out.print("Enter the Item Id you want to edit: ");
         int itemID = input.nextInt();
         input.nextLine();
@@ -102,8 +103,6 @@ public class Menu {
         String itemName = input.nextLine();
         System.out.print("Enter the new Item Quantity: ");
         int itemQuantity = input.nextInt();
-        assert itemID >= 1000 && itemID <= 9999: "Id out of bounds";
-        assert itemQuantity >= 50 &&  itemQuantity <= 999: "Quantity out of bounds";
         sr.Edit(itemID, itemName, itemQuantity);
     }
 

@@ -6,6 +6,18 @@ public class Service extends DataManager {
    private HashMap<Integer,Integer> Quan = new HashMap<>();
    private ArrayList<Integer> userInputs = new ArrayList<>();
    boolean easterEgg = false;
+
+   private static final int minIDcap = 1000;
+   private static final int maxIDcap = 9999;
+
+   private static final int minQuanCap = 50;
+   private static final int maxQuanCap = 999;
+
+   private static final String choice_Yes = "Y";
+   private static final String choice_No = "N";
+   private static final String File_Path = "Data.txt";
+
+
     public void setInv(HashMap<Integer, String> inv) {
         this.Inv = inv;
     }
@@ -17,7 +29,7 @@ public class Service extends DataManager {
     }
 
     public void preLoad() {
-        try (BufferedReader read = new BufferedReader(new FileReader("Data.txt"))) {
+        try (BufferedReader read = new BufferedReader(new FileReader(File_Path))) {
 
             while (true) {
                 String name_Line = read.readLine();
@@ -52,7 +64,7 @@ public class Service extends DataManager {
                     break;
                 }
 
-                if(ID >= 1000 && ID <= 9999 && quan >= 50 && quan <= 999) {
+                if(ID >=  minIDcap && ID <= maxIDcap && quan >= minQuanCap && quan <= maxQuanCap) {
                     userInputs.add(ID);
                     Inv.put(ID, item);
                     Quan.put(ID, quan);
@@ -100,9 +112,9 @@ public class Service extends DataManager {
            System.out.print("Your Choice Y/N: ");
            String op = input.next();
 
-           if(op.equals("Y")){
+           if(op.equals(choice_Yes)){
                Inv.remove(inp);
-           } else if(op.equals("N")){
+           } else if(op.equals(choice_No)){
                System.out.println("Action Cancelled");
            }
        } else {
@@ -117,6 +129,8 @@ public class Service extends DataManager {
 
     public void Edit(int inp, String item, int quan) {
         try{
+            assert inp >= minIDcap && inp <= maxIDcap: "Id out of bounds";
+            assert quan >= minQuanCap &&  quan <= maxQuanCap: "Quantity out of bounds";
             if(userInputs.contains(inp)){
                 super.EditLoad(item, quan, inp);
                 super.EditWrite(inp);
