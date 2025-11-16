@@ -5,6 +5,7 @@ public class Menu {
     Service sr = new Service();
     public void mMenu(){
         do {
+            sr.preLoad();
             System.out.println("==========  -Inventory Manager-  ==========");
             System.out.println("\t1. Add an Item");
             System.out.println("\t2. list Items");

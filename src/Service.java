@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.io.*;
 public class Service {
     Scanner input = new Scanner(System.in);
    private HashMap<Integer,String> Inv = new HashMap<>();
@@ -15,6 +15,32 @@ public class Service {
     }
     public void setUserInputs(ArrayList<Integer> userInputs) {
         this.userInputs = userInputs;
+    }
+
+    public void preLoad() {
+        try (BufferedReader read = new BufferedReader(new FileReader("Data.txt"))) {
+
+            while (true) {
+                String name_Line = read.readLine();
+                if (name_Line == null) break;
+
+                String ID_Line = read.readLine();
+                String quan_Line = read.readLine();
+
+                int ID = Integer.parseInt(ID_Line);
+                int Qun = Integer.parseInt(quan_Line);
+                String Name = name_Line;
+
+                userInputs.add(ID);
+                Inv.put(ID, Name);
+                Quan.put(ID, Qun);
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
