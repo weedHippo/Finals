@@ -34,6 +34,7 @@ public class Menu {
                     break;
                 case 5:
                     System.out.println("Goodbye!!");
+                    System.out.println("And thank you :D");
                     System.exit(0);
                 default:
                     System.out.println("Invalid choice");
