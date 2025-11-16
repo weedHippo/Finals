@@ -1,12 +1,11 @@
 import java.util.*;
 import java.io.*;
-public class Service {
+public class Service extends DataManager {
     Scanner input = new Scanner(System.in);
    private HashMap<Integer,String> Inv = new HashMap<>();
    private HashMap<Integer,Integer> Quan = new HashMap<>();
    private ArrayList<Integer> userInputs = new ArrayList<>();
    boolean easterEgg = false;
-   boolean Error = false;
     public void setInv(HashMap<Integer, String> inv) {
         this.Inv = inv;
     }
@@ -29,10 +28,10 @@ public class Service {
 
                 int ID = Integer.parseInt(ID_Line);
                 int Qun = Integer.parseInt(quan_Line);
-                String Name = name_Line;
+                String I_Name = name_Line;
 
                 userInputs.add(ID);
-                Inv.put(ID, Name);
+                Inv.put(ID, I_Name);
                 Quan.put(ID, Qun);
             }
 
@@ -58,7 +57,7 @@ public class Service {
                     Inv.put(ID, item);
                     Quan.put(ID, quan);
 
-                    //super.Write(ID, item, quan);
+                    super.Write(ID, item, quan);
                     System.out.println("\nItem added successfully!");
                     System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
                     break;
@@ -84,7 +83,7 @@ public class Service {
             int quantity = Quan.getOrDefault(id, 0);
             System.out.println("ID: " + id + " | Name: " + name + " | Quantity: " + quantity);
         }
-        if (easterEgg == false) {
+        if (!easterEgg) {
             System.out.println("Achievement get: Keeping Inventory");
             easterEgg = true;
         }
@@ -97,7 +96,7 @@ public class Service {
     public void remove(int inp){
        if(Inv.containsKey(inp)){
            System.out.println("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
-           System.out.println("Process is irreversable");
+           System.out.println("Process is irreversible");
            System.out.print("Your Choice Y/N: ");
            String op = input.next();
 

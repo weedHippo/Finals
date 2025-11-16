@@ -4,9 +4,9 @@ public class DataManager {
             try{
                 BufferedWriter write = new BufferedWriter(new FileWriter("Data.txt", true));
                 while(true){
-                    write.write(Integer.toString(id));
-                    write.write("\n");
                     write.write(item);
+                    write.write("\n");
+                    write.write(Integer.toString(id));
                     write.write("\n");
                     write.write(Integer.toString(quantity));
                     write.write("\n");
