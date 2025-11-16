@@ -96,7 +96,7 @@ public class Service extends DataManager {
     public void remove(int inp){
        if(Inv.containsKey(inp)){
            System.out.println("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
-           System.out.println("Process is irreversible");
+           System.out.println("Process is aaairreversible");
            System.out.print("Your Choice Y/N: ");
            String op = input.next();
 
@@ -118,8 +118,9 @@ public class Service extends DataManager {
     public void Edit(int inp, String item, int quan) {
         try{
             if(userInputs.contains(inp)){
-                Inv.put(inp, item);
-                Quan.put(inp, quan);
+                //Inv.put(inp, item);
+                //Quan.put(inp, quan);
+                super.Write(inp, item, quan);
             System.out.println("Item is now edited!");
             } else{
                 System.out.println("Item does not exist!");
