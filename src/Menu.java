@@ -56,7 +56,6 @@ public class Menu {
 
 
                 sr.AddItem(itemName, itemID, itemQuantity);
-
                 System.out.print("\nAdd an item? Y/N: ");
                 String choice = input.nextLine();
 

@@ -19,7 +19,6 @@ public class Service {
 
 
    public void AddItem(String item, int ID, int quan) {
-
         try{
             while(true){
                 if(Inv.containsKey(ID)){
@@ -32,6 +31,8 @@ public class Service {
                     userInputs.add(ID);
                     Inv.put(ID, item);
                     Quan.put(ID, quan);
+
+                    //super.Write(ID, item, quan);
                     System.out.println("\nItem added successfully!");
                     System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
                     break;
@@ -89,7 +90,6 @@ public class Service {
     }
 
 
-    //hello
     public void Edit(int inp, String item, int quan) {
         try{
             if(userInputs.contains(inp)){
