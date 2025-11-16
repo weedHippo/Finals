@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class DataManager {
+abstract class DataManager {
     ArrayList<String> ref = new ArrayList<>();
     String temp;
     String temp2;
