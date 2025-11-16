@@ -64,38 +64,35 @@ public class DataManager {
        }
 
 
-       public void EditWrite(int id){
-        try(BufferedWriter write = new BufferedWriter(new FileWriter("Data.txt"))){
-            int counter = 0;
-            int index = 0;
-            int quantityIndex = 0;
-            int itemIndex= 0;
-            String Ref = Integer.toString(id);
-            while(true){
-                if(ref.get(index).equals(Ref)){
-                    itemIndex = counter - 1;
-                    quantityIndex = counter + 1;
-                    System.out.println("all good here");
-                    break;
+    public void EditWrite(int id) {
+        String Ref = Integer.toString(id);
+
+        try (BufferedWriter write = new BufferedWriter(new FileWriter("Data.txt"))) { // overwrite
+            for (int i = 0; i < ref.size(); i += 3) { // step by 3 lines (item, id, quantity)
+                String currentID = ref.get(i + 1);
+                if (currentID.equals(Ref)) {
+                    // write edited block
+                    write.write(editedName);
+                    write.newLine();
+                    write.write(Ref);
+                    write.newLine();
+                    write.write(editedQuantity);
+                    write.newLine();
+                } else {
+                    // write existing block
+                    write.write(ref.get(i));
+                    write.newLine();
+                    write.write(ref.get(i + 1));
+                    write.newLine();
+                    write.write(ref.get(i + 2));
+                    write.newLine();
                 }
-                counter++;
-                index++;
             }
-
-            if(ref.get(itemIndex).equals(editedName) && ref.get(quantityIndex).equals(editedQuantity)){
-                System.out.println("ID ref: " + ref.get(itemIndex));
-                System.out.println("Item ref: " + ref.get(quantityIndex));
-            }else {
-                System.out.println("woops");
-            }
-
-        }catch(IOException e){
+            System.out.println("Successfully updated the file.");
+        } catch (IOException e) {
             System.out.println(e);
         }
+    }
 
-
-            System.out.println("Debug: " +  editedName);
-            System.out.println("Debug: " + editedQuantity);
-       }
 
 }
