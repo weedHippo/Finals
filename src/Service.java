@@ -120,7 +120,8 @@ public class Service extends DataManager {
             if(userInputs.contains(inp)){
                 //Inv.put(inp, item);
                 //Quan.put(inp, quan);
-                super.Write(inp, item, quan);
+                super.EditLoad(item, quan, inp);
+                super.EditWrite(inp);
             System.out.println("Item is now edited!");
             } else{
                 System.out.println("Item does not exist!");
