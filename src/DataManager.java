@@ -22,9 +22,21 @@ abstract class DataManager {
 
     int Temp_ID;
 
-    public void Write(int id, String item, int quantity) {
+    public void Add_Load(int Id){
+        try( BufferedReader ADD_LOAD = new BufferedReader(new FileReader(filePath))){
+            ref.clear();
+            while ((currentLine = ADD_LOAD.readLine()) != null) {
+                ref.add(currentLine);
+            }
 
+            System.out.println("Loaded");
 
+        }catch(IOException e){
+            System.out.println("Error in Add Load");
+        }
+    }
+
+    public void Add_Write(int id, String item, int quantity) {
         //Disabled: For Reference.
         /*try {
             BufferedWriter write = new BufferedWriter(new FileWriter(filePath, true));
@@ -41,17 +53,11 @@ abstract class DataManager {
         }
          */
 
-
         try{
-            BufferedReader ADD_LOAD = new BufferedReader(new FileReader(filePath));
             BufferedWriter ADD_WRITE_AP = new BufferedWriter(new FileWriter(filePath, true));
             BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));
 
             int index = 0;
-
-            while ((currentLine = ADD_LOAD.readLine()) != null) {
-                ref.add(currentLine);
-            }
 
             if(ref.get(index).equals(empty_quan) || ref.get(index).equals(empty_ID)){
                 System.out.println("the empty block is found");
