@@ -24,12 +24,26 @@ abstract class DataManager {
 
     public void Add_Load(int Id){
         try( BufferedReader ADD_LOAD = new BufferedReader(new FileReader(filePath))){
+            int index = 0;
             ref.clear();
             while ((currentLine = ADD_LOAD.readLine()) != null) {
                 ref.add(currentLine);
             }
 
             System.out.println("Loaded");
+        //here for debug purposes, or maybe might stay?
+        while (true){
+            if(ref.get(index).equals(empty_quan) || ref.get(index).equals(empty_ID)){
+                System.out.println("the empty block is found");
+                break;
+            }else{
+                index ++;
+                //also this
+                /*
+                already made the entire like class, just make this part please!!
+                 */
+            }
+        }
 
         }catch(IOException e){
             System.out.println("Error in Add Load");
