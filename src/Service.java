@@ -92,26 +92,35 @@ public class Service extends DataManager {
 
     public void DisplayAll() {
         System.out.println("\n--- Current Inventory ---");
+
         for (int id : Inv.keySet()) {
             String name = Inv.get(id);
-            int quantity = Quan.getOrDefault(id, 0);
-            System.out.println("ID: " + id + " | Name: " + name + " | Quantity: " + quantity);
+            Integer quantity = Quan.get(id); // use Integer for null check
+
+            boolean missingName = (name == null || name.trim().isEmpty());
+            boolean missingQuantity = (quantity == null || quantity == 0);
+
+            if (missingName || missingQuantity) {
+                System.out.println("ID: " + id + " | Name: <Not Found> | Quantity: <Not Found>");
+            } else {
+                System.out.println("ID: " + id + " | Name: " + name + " | Quantity: " + quantity);
+            }
         }
+
         if (!easterEgg) {
             System.out.println("Achievement get: Keeping Inventory");
             easterEgg = true;
         }
 
-        System.out.println("--------------------------");
-        System.out.println("\n");
-
+        System.out.println("--------------------------\n");
     }
+
 
     public void remove(int inp){
        if(Inv.containsKey(inp)){
            System.out.println("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
            System.out.println("Process is irreversible");
-           System.out.print("Your Choice Y/N: ");
+           System.out.print("\nYour Choice Y/N: ");
            String op = input.next();
 
            if(op.equals(choice_Yes)){
@@ -120,7 +129,7 @@ public class Service extends DataManager {
                int remQuan = Quan.get(inp);
                int refID = inp;
                super.removeLoad(refID, item, remQuan);
-
+               super.RemoveItem(inp);
            } else if(op.equals(choice_No)){
                System.out.println("Action Cancelled");
            }

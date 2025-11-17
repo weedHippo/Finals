@@ -16,6 +16,8 @@ abstract class DataManager {
     private static final int QUANTITY_INDEX = 1;
     private static final int REF_Quan_INDEX = 2;
 
+    String empty_quan = "0";
+
     public void Write(int id, String item, int quantity) {
         try {
             BufferedWriter write = new BufferedWriter(new FileWriter(filePath, true));
@@ -136,6 +138,43 @@ abstract class DataManager {
             System.out.println(e.getMessage());
         }
     }
+
+    public void RemoveItem(int id) {
+        String targetID = Integer.toString(id);
+
+        try (BufferedWriter write = new BufferedWriter(new FileWriter(filePath))) { // overwrite
+            for (int i = ITEM_INDEX; i < ref.size(); i += BLOCK_SIZE) { // step by 3 lines (item, id, quantity)
+                String currentID = ref.get(i + ID_INDEX);
+
+                if (currentID.equals(targetID)) {
+                    write.write("");           // blank item
+                    write.newLine();
+                    write.write(targetID);     // ID stays
+                    write.newLine();
+                    write.write(empty_quan);           // blank quantity
+                    write.newLine();
+
+                } else {
+                    // Original logic for non-edited blocks
+                    write.write(ref.get(i));
+                    write.newLine();
+                    write.write(ref.get(i + ID_INDEX));
+                    write.newLine();
+                    write.write(ref.get(i + REF_Quan_INDEX));
+                    write.newLine();
+                }
+            }
+
+            System.out.println("Successfully removed the item (fields blanked).");
+
+            ref.clear(); // same as EditWrite
+            System.out.println("Debug: array cleared");
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
 
 }
