@@ -78,25 +78,37 @@ public class Menu {
     }
     public void Remove() {
         while (true) {
-            System.out.println("Warning: you're about to remove an item in the inventory" + "\n Type Y to proceed, press N to return to the Menu");
+            System.out.println("Warning: you're about to remove an item from the inventory.");
+            System.out.println("Type Y to proceed, or N to return to the menu.");
             System.out.print("Y/N: ");
-            String choice = input.nextLine();
-            input.nextLine();
+
+            String choice = input.nextLine().trim();
 
             if (choice.equalsIgnoreCase("N")) {
-                System.out.println("returning to the main menu...");
+                System.out.println("Returning to the main menu...");
                 break;
-            } else if (choice.equalsIgnoreCase("Y")) {
-                System.out.println("Enter the ID of the item you want to remove: ");
-                System.out.print("Item ID: ");
-                int itemID = input.nextInt();
-                input.nextLine();
-                sr.remove(itemID);
-            } else {
-                System.out.println("Invalid input");
             }
+
+            if (choice.equalsIgnoreCase("Y")) {
+                System.out.print("Enter the ID of the item you want to remove: ");
+
+                if (!input.hasNextInt()) {
+                    System.out.println("Invalid ID! Must be a number.");
+                    input.nextLine(); // clear invalid input
+                    continue;
+                }
+
+                int itemID = input.nextInt();
+                input.nextLine(); // clear buffer
+
+                sr.remove(itemID);
+                break;
+            }
+
+            System.out.println("Invalid choice. Please enter only Y or N.");
         }
     }
+
     public void Edit() {
         System.out.print("Enter the Item Id you want to edit: ");
         int itemID = input.nextInt();

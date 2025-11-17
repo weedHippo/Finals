@@ -116,31 +116,43 @@ public class Service extends DataManager {
     }
 
 
-    public void remove(int inp){
-       if(Inv.containsKey(inp)){
-           System.out.println("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
-           System.out.println("Process is irreversible");
-           System.out.print("\nYour Choice Y/N: ");
-           String op = input.next();
+    public void remove(int inp) {
 
-           if(op.equals(choice_Yes)){
-               //Inv.remove(inp);
-               String item = Inv.get(inp);
-               int remQuan = Quan.get(inp);
-               int refID = inp;
-               super.removeLoad(refID, item, remQuan);
-               super.RemoveItem(inp);
-           } else if(op.equals(choice_No)){
-               System.out.println("Action Cancelled");
-           }
-       } else {
-           System.out.println("Item not found!");
-           System.out.println("Enter the proper ID and try again");
-       }
+        if (!Inv.containsKey(inp)) {
+            System.out.println("Item not found!");
+            System.out.println("Enter the proper ID and try again");
+            return;
+        }
 
+        System.out.println("\nAre you sure you want to remove: " + Inv.get(inp) + "?");
+        System.out.println("This process is irreversible.");
+        System.out.print("Your choice (Y/N): ");
 
+        String op = input.nextLine().trim();
 
+        if (op.equalsIgnoreCase("Y")) {
+
+            String item = Inv.get(inp);
+            int remQuan = Quan.getOrDefault(inp, 0);  // safe get
+            int refID = inp;
+
+            // Call your file modification logic
+            super.removeLoad(refID, item, remQuan);
+            super.RemoveItem(inp);
+
+            // Mark entry as removed (empty slot)
+            Inv.put(inp, "");
+            Quan.put(inp, 0);
+
+            System.out.println("Item removed successfully!");
+
+        } else if (op.equalsIgnoreCase("N")) {
+            System.out.println("Action cancelled.");
+        } else {
+            System.out.println("Invalid input. Removal aborted.");
+        }
     }
+
 
 
     public void Edit(int inp, String item, int quan) {
