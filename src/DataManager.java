@@ -54,7 +54,7 @@ abstract class DataManager {
             }
 
             if(ref.get(index).equals(empty_quan) || ref.get(index).equals(empty_ID)){
-                //complete this
+                System.out.println("the empty block is found");
             }else{
                 //also this
                 /*

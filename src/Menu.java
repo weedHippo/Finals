@@ -94,12 +94,12 @@ public class Menu {
 
                 if (!input.hasNextInt()) {
                     System.out.println("Invalid ID! Must be a number.");
-                    input.nextLine(); // clear invalid input
+                    input.nextLine();
                     continue;
                 }
 
                 int itemID = input.nextInt();
-                input.nextLine(); // clear buffer
+                input.nextLine();
 
                 sr.remove(itemID);
                 break;

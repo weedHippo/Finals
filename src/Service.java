@@ -67,9 +67,9 @@ public class Service extends DataManager {
                 }
 
                 if(ID >=  minIDcap && ID <= maxIDcap && quan >= minQuanCap && quan <= maxQuanCap) {
-                    userInputs.add(ID);
-                    Inv.put(ID, item);
-                    Quan.put(ID, quan);
+                    //userInputs.add(ID);
+                    //Inv.put(ID, item);
+                    //Quan.put(ID, quan);
 
                     super.Write(ID, item, quan);
                     System.out.println("\nItem added successfully!");
