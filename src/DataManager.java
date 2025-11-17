@@ -17,9 +17,16 @@ abstract class DataManager {
     private static final int REF_Quan_INDEX = 2;
 
     String empty_quan = "0";
+    String empty_ID = "0000";
+    String empty_NAME = "Empty";
+
+    int Temp_ID;
 
     public void Write(int id, String item, int quantity) {
-        try {
+
+
+        //Disabled: For Reference.
+        /*try {
             BufferedWriter write = new BufferedWriter(new FileWriter(filePath, true));
             write.write(item);
             write.newLine();
@@ -32,7 +39,35 @@ abstract class DataManager {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+         */
+
+
+        try{
+            BufferedReader ADD_LOAD = new BufferedReader(new FileReader(filePath));
+            BufferedWriter ADD_WRITE_AP = new BufferedWriter(new FileWriter(filePath, true));
+            BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath, true));
+
+            int index = 0;
+
+            while ((currentLine = ADD_LOAD.readLine()) != null) {
+                ref.add(currentLine);
+            }
+
+            if(ref.get(index).equals(empty_quan) || ref.get(index).equals(empty_ID)){
+                //complete this
+            }else{
+                //also this
+                /*
+                already made the entire like class, just make this part please!!
+                 */
+            }
+
+        }catch (IOException e){
+            System.out.println("Error: File not found");
+        }
     }
+
+
 
     public void EditLoad(String item, int quantity, int id) {
         String newItemName = item;
@@ -147,15 +182,14 @@ abstract class DataManager {
                 String currentID = ref.get(i + ID_INDEX);
 
                 if (currentID.equals(targetID)) {
-                    write.write("");           // blank item
+                    write.write(empty_NAME);
                     write.newLine();
-                    write.write(targetID);     // ID stays
+                    write.write(empty_ID);
                     write.newLine();
-                    write.write(empty_quan);           // blank quantity
+                    write.write(empty_quan);
                     write.newLine();
 
                 } else {
-                    // Original logic for non-edited blocks
                     write.write(ref.get(i));
                     write.newLine();
                     write.write(ref.get(i + ID_INDEX));
@@ -167,9 +201,7 @@ abstract class DataManager {
 
             System.out.println("Successfully removed the item (fields blanked).");
 
-            ref.clear(); // same as EditWrite
-            System.out.println("Debug: array cleared");
-
+            ref.clear();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
