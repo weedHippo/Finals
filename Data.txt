@@ -1,13 +1,13 @@
-cantaloupe
+Winter Melon
 1000
-50
-banana
+80
+Banana
 1001
-50
+90
 Apple
 1002
-50
-Mango
+85
+Test
 1003
 67
 Mustard
