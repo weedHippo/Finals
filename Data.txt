@@ -1,12 +1,12 @@
-Winter Melon
+Water
 1000
-80
-Banana
+88
+Pine Nuts
 1001
-90
-Apple
+87
+Almonds
 1002
-85
+99
 Test
 1003
 67

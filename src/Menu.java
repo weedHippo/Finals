@@ -87,9 +87,10 @@ public class Menu {
                 System.out.println("returning to the main menu...");
                 break;
             } else if (choice.equalsIgnoreCase("Y")) {
-                System.out.println("Enter the Id of the item you want to remove: ");
+                System.out.println("Enter the ID of the item you want to remove: ");
                 System.out.print("Item ID: ");
                 int itemID = input.nextInt();
+                input.nextLine();
                 sr.remove(itemID);
             } else {
                 System.out.println("Invalid input");

@@ -13,7 +13,8 @@ abstract class DataManager {
     private static final int BLOCK_SIZE = 3;
     private static final int ITEM_INDEX = 0;
     private static final int ID_INDEX = 1;
-    private static final int QUANTITY_INDEX = 2;
+    private static final int QUANTITY_INDEX = 1;
+    private static final int REF_Quan_INDEX = 2;
 
     public void Write(int id, String item, int quantity) {
         try {
@@ -46,7 +47,7 @@ abstract class DataManager {
                 targetIDString = Integer.toString(id);
                 if (ref.get(index).equals(targetIDString)) {
                     int itemIndex = counter - ID_INDEX;
-                    int quantityIndex = counter + ITEM_INDEX;
+                    int quantityIndex = counter + QUANTITY_INDEX;
 
                     System.out.println("ID found: " + ref.get(index));
                     System.out.println("Item found: " + ref.get(itemIndex));
@@ -86,13 +87,55 @@ abstract class DataManager {
                     write.newLine();
                     write.write(ref.get(i + ID_INDEX));
                     write.newLine();
-                    write.write(ref.get(i + QUANTITY_INDEX));
+                    write.write(ref.get(i + REF_Quan_INDEX));
                     write.newLine();
                 }
             }
             System.out.println("Successfully updated the file.");
+            ref.clear();
+            System.out.println("Debug: " + ref.get(ITEM_INDEX));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
+
+
+    public void removeLoad(int remID, String remItem, int remQuan) {
+        String removeItemName = remItem;
+        String removeQuantity = Integer.toString(remQuan);
+
+        try (BufferedReader read = new BufferedReader(new FileReader(filePath))) {
+            int counter = 0;
+            int index = 0;
+            while ((currentLine = read.readLine()) != null) {
+                ref.add(currentLine);
+            }
+
+            while (true) {
+                String targetIDString = Integer.toString(remID);
+                if (ref.get(index).equals(targetIDString)) {
+                    int itemIndex = counter - ID_INDEX;
+                    int quantityIndex = counter + QUANTITY_INDEX;
+
+                    System.out.println("ID found: " + ref.get(index));
+                    System.out.println("Item found: " + ref.get(itemIndex));
+                    System.out.println("Quantity found: " + ref.get(quantityIndex));
+
+                    ref.set(itemIndex, removeItemName);
+                    ref.set(quantityIndex, removeQuantity);
+
+                    editedName = ref.get(itemIndex);
+                    editedQuantity = ref.get(quantityIndex);
+                    break;
+                }
+                counter++;
+                index++;
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 }

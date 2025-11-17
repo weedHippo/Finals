@@ -110,12 +110,17 @@ public class Service extends DataManager {
     public void remove(int inp){
        if(Inv.containsKey(inp)){
            System.out.println("Are you sure you want to remove the item " + Inv.get(inp) + " ?" );
-           System.out.println("Process is aaairreversible");
+           System.out.println("Process is irreversible");
            System.out.print("Your Choice Y/N: ");
            String op = input.next();
 
            if(op.equals(choice_Yes)){
-               Inv.remove(inp);
+               //Inv.remove(inp);
+               String item = Inv.get(inp);
+               int remQuan = Quan.get(inp);
+               int refID = inp;
+               super.removeLoad(refID, item, remQuan);
+
            } else if(op.equals(choice_No)){
                System.out.println("Action Cancelled");
            }
@@ -134,6 +139,8 @@ public class Service extends DataManager {
             assert inp >= minIDcap && inp <= maxIDcap: "Id out of bounds";
             assert quan >= minQuanCap &&  quan <= maxQuanCap: "Quantity out of bounds";
             if(userInputs.contains(inp)){
+                Inv.put(inp, item);
+                Quan.put(inp, quan);
                 super.EditLoad(item, quan, inp);
                 super.EditWrite(inp);
             System.out.println("Item is now edited!");
