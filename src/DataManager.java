@@ -45,7 +45,7 @@ abstract class DataManager {
         try{
             BufferedReader ADD_LOAD = new BufferedReader(new FileReader(filePath));
             BufferedWriter ADD_WRITE_AP = new BufferedWriter(new FileWriter(filePath, true));
-            BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath, true));
+            BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));
 
             int index = 0;
 
@@ -109,8 +109,8 @@ abstract class DataManager {
     public void EditWrite(int id) {
         String targetID = Integer.toString(id);
 
-        try (BufferedWriter write = new BufferedWriter(new FileWriter(filePath))) { // overwrite
-            for (int i = ITEM_INDEX; i < ref.size(); i += BLOCK_SIZE) { // step by 3 lines (item, id, quantity)
+        try (BufferedWriter write = new BufferedWriter(new FileWriter(filePath))) {
+            for (int i = ITEM_INDEX; i < ref.size(); i += BLOCK_SIZE) {
                 String currentID = ref.get(i + ID_INDEX);
                 if (currentID.equals(targetID)) {
                     write.write(editedName);
