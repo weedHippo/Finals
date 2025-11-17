@@ -37,12 +37,12 @@ abstract class DataManager {
                 System.out.println("the empty block is found");
                 break;
             }else{
-                index ++;
                 //also this
                 /*
                 already made the entire like class, just make this part please!!
                  */
             }
+            index ++;
         }
 
         }catch(IOException e){
