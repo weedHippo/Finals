@@ -66,16 +66,18 @@ abstract class DataManager {
                 Add_Write(FinalName, FinalQuantity, FinalID);
 
                 break;
-            }else{
+            }else if(!emptyBlock){
                 String Append_item = Name;
                 String Append_quantity = Integer.toString(Quantity);
                 String Append_ID = Integer.toString(Id);
-                Add_Write(Append_item, Append_quantity, Append_ID);
+                AddAP(Append_ID, Append_item, Append_quantity);
+                break;
+            }else {
+                counter++;
+                index++;
             }
 
 
-            index ++;
-            counter ++;
 
 
         }
@@ -103,43 +105,29 @@ abstract class DataManager {
             System.out.println(e.getMessage());
         }
          */
-        try{
+        try(BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));){
             int index = 0;
+            for (int i = ITEM_INDEX; i < ref.size(); i += BLOCK_SIZE){
+                String currentID = ref.get(i + ID_INDEX);
+                if (currentID.equals(empty_ID)) {
 
-            if(emptyBlock){
-                BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));
-                for (int i = ITEM_INDEX; i < ref.size(); i += BLOCK_SIZE){
-                    String currentID = ref.get(i + ID_INDEX);
-                    if (currentID.equals(empty_ID)) {
-
-                        ADD_WRITE_OW.write(item);
-                        ADD_WRITE_OW.newLine();
-                        ADD_WRITE_OW.write(id);
-                        ADD_WRITE_OW.newLine();
-                        ADD_WRITE_OW.write(quantity);
-                        ADD_WRITE_OW.newLine();
-                    } else {
-                        ADD_WRITE_OW.write(ref.get(i));
-                        ADD_WRITE_OW.newLine();
-                        ADD_WRITE_OW.write(ref.get(i + ID_INDEX));
-                        ADD_WRITE_OW.newLine();
-                        ADD_WRITE_OW.write(ref.get(i + REF_Quan_INDEX));
-                        ADD_WRITE_OW.newLine();
-                    }
-
+                    ADD_WRITE_OW.write(item);
+                    ADD_WRITE_OW.newLine();
+                    ADD_WRITE_OW.write(id);
+                    ADD_WRITE_OW.newLine();
+                    ADD_WRITE_OW.write(quantity);
+                    ADD_WRITE_OW.newLine();
+                } else {
+                    ADD_WRITE_OW.write(ref.get(i));
+                    ADD_WRITE_OW.newLine();
+                    ADD_WRITE_OW.write(ref.get(i + ID_INDEX));
+                    ADD_WRITE_OW.newLine();
+                    ADD_WRITE_OW.write(ref.get(i + REF_Quan_INDEX));
+                    ADD_WRITE_OW.newLine();
                 }
-                ADD_WRITE_OW.close();
-            } else {
-                BufferedWriter ADD_WRITE_AP = new BufferedWriter(new FileWriter(filePath, true));
-                ADD_WRITE_AP.write(item);
-                ADD_WRITE_AP.newLine();
-                ADD_WRITE_AP.write(id);
-                ADD_WRITE_AP.newLine();
-                ADD_WRITE_AP.write(quantity);
-                ADD_WRITE_AP.newLine();
 
-                ADD_WRITE_AP.close();
             }
+            ADD_WRITE_OW.close();
 
             System.out.println("Successfully wrote to the file.");
             emptyBlock = false;
@@ -149,6 +137,18 @@ abstract class DataManager {
         }
     }
 
+    public void AddAP(String id, String item, String quantity){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            writer.write(item);
+            writer.newLine();
+            writer.write(id);
+            writer.newLine();
+            writer.write(quantity);
+            writer.newLine();
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
 
 
     public void EditLoad(String item, int quantity, int id) {
