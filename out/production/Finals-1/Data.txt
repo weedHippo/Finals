@@ -1,0 +1,18 @@
+Water
+1000
+88
+Pine Nuts
+1001
+87
+Almonds
+1002
+99
+Mango
+1003
+67
+Mustard
+1004
+67
+Empty
+0000
+0
