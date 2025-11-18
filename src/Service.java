@@ -33,25 +33,26 @@ public class Service extends DataManager {
 
     public void preLoad() {
         try (BufferedReader read = new BufferedReader(new FileReader(File_Path))) {
-
-            while (true) {
-                String name_Line = read.readLine();
-                if (name_Line == null) break;
-
+            String name_Line;
+            while ((name_Line = read.readLine()) != null) {
                 String ID_Line = read.readLine();
                 String quan_Line = read.readLine();
 
+                if (ID_Line == null || quan_Line == null) {
+                    System.out.println("Warning: incomplete block detected, skipping");
+                    break;
+                }
+
                 int ID = Integer.parseInt(ID_Line);
                 int Qun = Integer.parseInt(quan_Line);
-                String I_Name = name_Line;
 
                 userInputs.add(ID);
-                Inv.put(ID, I_Name);
+                Inv.put(ID, name_Line);
                 Quan.put(ID, Qun);
             }
 
-        }  catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException e) {
+            System.out.println("Error loading file: " + e.getMessage());
         }
     }
 
@@ -59,6 +60,7 @@ public class Service extends DataManager {
    public void AddItem(String item, int ID, int quan) {
         try{
             while(true){
+
                 if(Inv.containsKey(ID)){
                     System.out.println("Item with that ID already exists!");
                     System.err.println("Try Again");
@@ -69,7 +71,7 @@ public class Service extends DataManager {
                     userInputs.add(ID);
                     Inv.put(ID, item);
                     Quan.put(ID, quan);
-                    super.Add_Load(ID, item, quan);
+                    super.Add_Load(item,ID,quan);
                     System.out.println("\nItem added successfully!");
                     System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
                     break;
@@ -90,8 +92,9 @@ public class Service extends DataManager {
 
     public void DisplayAll() {
         System.out.println("\n--- Current Inventory ---");
-
-        for (int id : Inv.keySet()) {
+        List<Integer> IDs = new ArrayList<>(Inv.keySet());
+        Collections.sort(IDs);
+        for (int id : IDs) {
             String name = Inv.get(id);
             Integer quantity = Quan.get(id);
 
@@ -134,13 +137,17 @@ public class Service extends DataManager {
             int remQuan = Quan.getOrDefault(inp, 0);
             int refID = inp;
 
-            // Call your file modification logic
+
             super.removeLoad(refID, item, remQuan);
             super.RemoveItem(inp);
 
+            Inv.remove(inp);
+            Quan.remove(inp);
+
             // Mark entry as removed (empty slot)
-            Inv.put(inp, "");
-            Quan.put(inp, 0);
+            int emptyID = 0000;
+            Inv.put(emptyID, "");
+            Quan.put(emptyID, 0);
 
             System.out.println("Item removed successfully!");
 

@@ -24,7 +24,7 @@ abstract class DataManager {
 
     int Temp_ID;
 
-    public void Add_Load(int Id, String Name, int Quantity) {
+    public void Add_Load(String Name,int Id ,int Quantity) {
         try( BufferedReader ADD_LOAD = new BufferedReader(new FileReader(filePath))){
             int index = 0;
             int counter = 0;
@@ -44,7 +44,18 @@ abstract class DataManager {
 
             System.out.println("Loaded");
 
-        //here for debug purposes, or maybe might stay?
+            if (ref.isEmpty()) {
+                System.out.println("File is empty, appending directly");
+                AddAP(newName, newID, newQuantity);
+                return;
+            }
+
+            if (!emptyBlock) {
+                ADD_LOAD.close();
+                AddAP(Name, Integer.toString(Id), Integer.toString(Quantity));
+            }
+
+
         while (true){
             if(ref.get(index).equals(empty_quan) || ref.get(index).equals(empty_ID)){
                 System.out.println("the empty block is found");
@@ -62,24 +73,14 @@ abstract class DataManager {
                 FinalName = ref.get(ID_INDEX);
                 FinalQuantity = ref.get(QUAN_IDX);
                 FinalID = ref.get(ID_INDEX);
-
+                ADD_LOAD.close();
                 Add_Write(FinalName, FinalQuantity, FinalID);
 
-                break;
-            }else if(!emptyBlock){
-                String Append_item = Name;
-                String Append_quantity = Integer.toString(Quantity);
-                String Append_ID = Integer.toString(Id);
-                AddAP(Append_ID, Append_item, Append_quantity);
                 break;
             }else {
                 counter++;
                 index++;
             }
-
-
-
-
         }
 
         }catch(IOException e){
@@ -89,7 +90,7 @@ abstract class DataManager {
 
 
 
-    public void Add_Write(String id, String item, String quantity) {
+    public void Add_Write(String item, String id, String quantity) {
         //Disabled: For Reference.
         /*try {
             BufferedWriter write = new BufferedWriter(new FileWriter(filePath, true));
@@ -107,16 +108,17 @@ abstract class DataManager {
          */
         try(BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));){
             int index = 0;
-            for (int i = ITEM_INDEX; i < ref.size(); i += BLOCK_SIZE){
+            boolean isWritten = false;
+            for (int i = index; i < ref.size(); i += BLOCK_SIZE){
                 String currentID = ref.get(i + ID_INDEX);
-                if (currentID.equals(empty_ID)) {
-
+                if (!isWritten && currentID.equals(empty_ID)) {
                     ADD_WRITE_OW.write(item);
                     ADD_WRITE_OW.newLine();
                     ADD_WRITE_OW.write(id);
                     ADD_WRITE_OW.newLine();
                     ADD_WRITE_OW.write(quantity);
                     ADD_WRITE_OW.newLine();
+                    isWritten = true;
                 } else {
                     ADD_WRITE_OW.write(ref.get(i));
                     ADD_WRITE_OW.newLine();
@@ -131,13 +133,14 @@ abstract class DataManager {
 
             System.out.println("Successfully wrote to the file.");
             emptyBlock = false;
+            isWritten = false;
 
         }catch (IOException e){
             System.out.println("Error: File not found");
         }
     }
 
-    public void AddAP(String id, String item, String quantity){
+    public void AddAP(String item, String id, String quantity){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(item);
             writer.newLine();
@@ -149,6 +152,7 @@ abstract class DataManager {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
+
 
 
     public void EditLoad(String item, int quantity, int id) {
@@ -258,11 +262,9 @@ abstract class DataManager {
 
     public void RemoveItem(int id) {
         String targetID = Integer.toString(id);
-
         try (BufferedWriter write = new BufferedWriter(new FileWriter(filePath))) { // overwrite
             for (int i = ITEM_INDEX; i < ref.size(); i += BLOCK_SIZE) { // step by 3 lines (item, id, quantity)
                 String currentID = ref.get(i + ID_INDEX);
-
                 if (currentID.equals(targetID)) {
                     write.write(empty_NAME);
                     write.newLine();

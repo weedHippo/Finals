@@ -14,7 +14,8 @@ public class Menu {
             System.out.println("\t2. list Items");
             System.out.println("\t3. Remove an Item");
             System.out.println("\t4. Edit an Item");
-            System.out.println("\t5. Exit");
+            System.out.println("\t5. Refresh");
+            System.out.println("\t6. Exit");
             System.out.println("====================================");
             System.out.print("\tEnter your choice: ");
             int choice = input.nextInt();
@@ -33,6 +34,9 @@ public class Menu {
                     Edit();
                     break;
                 case 5:
+                    sr.preLoad();
+                    break;
+                case 6:
                     System.out.println("Goodbye!!");
                     System.out.println("And thank you :D");
                     System.exit(0);
