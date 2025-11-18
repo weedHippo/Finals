@@ -5,6 +5,7 @@ public class Service extends DataManager {
    private HashMap<Integer,String> Inv = new HashMap<>();
    private HashMap<Integer,Integer> Quan = new HashMap<>();
    private ArrayList<Integer> userInputs = new ArrayList<>();
+
    boolean easterEgg = false;
 
    private static final int minIDcap = 1000;
@@ -49,9 +50,7 @@ public class Service extends DataManager {
                 Quan.put(ID, Qun);
             }
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        }  catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -94,7 +93,7 @@ public class Service extends DataManager {
 
         for (int id : Inv.keySet()) {
             String name = Inv.get(id);
-            Integer quantity = Quan.get(id); // use Integer for null check
+            Integer quantity = Quan.get(id);
 
             boolean missingName = (name == null || name.trim().isEmpty());
             boolean missingQuantity = (quantity == null || quantity == 0);
@@ -129,10 +128,10 @@ public class Service extends DataManager {
 
         String op = input.nextLine().trim();
 
-        if (op.equalsIgnoreCase("Y")) {
+        if (op.equalsIgnoreCase(choice_Yes)) {
 
             String item = Inv.get(inp);
-            int remQuan = Quan.getOrDefault(inp, 0);  // safe get
+            int remQuan = Quan.getOrDefault(inp, 0);
             int refID = inp;
 
             // Call your file modification logic
@@ -145,7 +144,7 @@ public class Service extends DataManager {
 
             System.out.println("Item removed successfully!");
 
-        } else if (op.equalsIgnoreCase("N")) {
+        } else if (op.equalsIgnoreCase(choice_No)) {
             System.out.println("Action cancelled.");
         } else {
             System.out.println("Invalid input. Removal aborted.");

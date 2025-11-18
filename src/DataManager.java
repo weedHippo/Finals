@@ -95,6 +95,10 @@ abstract class DataManager {
             BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));
             int index = 0;
 
+            if(emptyBlock){
+
+            }
+
 
 
         }catch (IOException e){
