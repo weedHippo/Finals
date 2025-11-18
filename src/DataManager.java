@@ -25,24 +25,28 @@ abstract class DataManager {
     public void Add_Load(int Id){
         try( BufferedReader ADD_LOAD = new BufferedReader(new FileReader(filePath))){
             int index = 0;
+            int counter = 0;
             ref.clear();
             while ((currentLine = ADD_LOAD.readLine()) != null) {
                 ref.add(currentLine);
             }
 
             System.out.println("Loaded");
+
         //here for debug purposes, or maybe might stay?
         while (true){
             if(ref.get(index).equals(empty_quan) || ref.get(index).equals(empty_ID)){
                 System.out.println("the empty block is found");
+
+                int ITEM_INDEX = counter  - ID_INDEX;
+                int ID_INDEX = index;
+                int QUAN_IDX = counter + QUANTITY_INDEX;
+
+
                 break;
-            }else{
-                //also this
-                /*
-                already made the entire like class, just make this part please!!
-                 */
             }
             index ++;
+            counter ++;
         }
 
         }catch(IOException e){
@@ -66,21 +70,12 @@ abstract class DataManager {
             System.out.println(e.getMessage());
         }
          */
-
         try{
             BufferedWriter ADD_WRITE_AP = new BufferedWriter(new FileWriter(filePath, true));
             BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));
 
             int index = 0;
 
-            if(ref.get(index).equals(empty_quan) || ref.get(index).equals(empty_ID)){
-                System.out.println("the empty block is found");
-            }else{
-                //also this
-                /*
-                already made the entire like class, just make this part please!!
-                 */
-            }
 
         }catch (IOException e){
             System.out.println("Error: File not found");

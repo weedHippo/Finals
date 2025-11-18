@@ -71,7 +71,6 @@ public class Service extends DataManager {
                     //Inv.put(ID, item);
                     //Quan.put(ID, quan);
                     super.Add_Load(ID);
-                    //super.Add_Write(ID, item, quan);
                     System.out.println("\nItem added successfully!");
                     System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
                     break;
