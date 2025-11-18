@@ -96,7 +96,34 @@ abstract class DataManager {
             int index = 0;
 
             if(emptyBlock){
+                for (int i = ITEM_INDEX; i < ref.size(); i += BLOCK_SIZE){
+                    String currentID = ref.get(i + ID_INDEX);
+                    if (currentID.equals(empty_ID)) {
+                        ADD_WRITE_OW.write(item);
+                        ADD_WRITE_OW.newLine();
+                        ADD_WRITE_OW.write(id);
+                        ADD_WRITE_OW.newLine();
+                        ADD_WRITE_OW.write(quantity);
+                        ADD_WRITE_OW.newLine();
+                    } else {
+                        ADD_WRITE_OW.write(ref.get(i));
+                        ADD_WRITE_OW.newLine();
+                        ADD_WRITE_OW.write(ref.get(i + ID_INDEX));
+                        ADD_WRITE_OW.newLine();
+                        ADD_WRITE_OW.write(ref.get(i + REF_Quan_INDEX));
+                        ADD_WRITE_OW.newLine();
+                    }
 
+                }
+            } else {
+                ADD_WRITE_AP.write(item);
+                ADD_WRITE_AP.newLine();
+                ADD_WRITE_AP.write(id);
+                ADD_WRITE_AP.newLine();
+                ADD_WRITE_AP.write(quantity);
+                ADD_WRITE_AP.newLine();
+                ADD_WRITE_AP.close();
+                System.out.println("Successfully wrote to the file.");
             }
 
 
