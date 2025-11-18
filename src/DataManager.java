@@ -91,14 +91,14 @@ abstract class DataManager {
         }
          */
         try{
-            BufferedWriter ADD_WRITE_AP = new BufferedWriter(new FileWriter(filePath, true));
-            BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));
             int index = 0;
 
             if(emptyBlock){
+                BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));
                 for (int i = ITEM_INDEX; i < ref.size(); i += BLOCK_SIZE){
                     String currentID = ref.get(i + ID_INDEX);
                     if (currentID.equals(empty_ID)) {
+
                         ADD_WRITE_OW.write(item);
                         ADD_WRITE_OW.newLine();
                         ADD_WRITE_OW.write(id);
@@ -115,18 +115,20 @@ abstract class DataManager {
                     }
 
                 }
+                ADD_WRITE_OW.close();
             } else {
+                BufferedWriter ADD_WRITE_AP = new BufferedWriter(new FileWriter(filePath, true));
                 ADD_WRITE_AP.write(item);
                 ADD_WRITE_AP.newLine();
                 ADD_WRITE_AP.write(id);
                 ADD_WRITE_AP.newLine();
                 ADD_WRITE_AP.write(quantity);
                 ADD_WRITE_AP.newLine();
+
                 ADD_WRITE_AP.close();
-                System.out.println("Successfully wrote to the file.");
             }
 
-
+            System.out.println("Successfully wrote to the file.");
 
         }catch (IOException e){
             System.out.println("Error: File not found");
