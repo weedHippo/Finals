@@ -24,88 +24,58 @@ abstract class DataManager {
 
     int Temp_ID;
 
-    public void Add_Load(String Name,int Id ,int Quantity) {
-        try( BufferedReader ADD_LOAD = new BufferedReader(new FileReader(filePath))){
-            int index = 0;
-            int counter = 0;
-
-            String FinalName;
-            String FinalQuantity;
-            String FinalID;
-
-            String newName = Name;
-            String newQuantity = Integer.toString(Quantity);
-            String newID = Integer.toString(Id);
-
+    public void Add_Load(String name, int id, int quantity) {
+        try {
+            // Load the file into memory
             ref.clear();
-            while ((currentLine = ADD_LOAD.readLine()) != null) {
-                ref.add(currentLine);
+            try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    ref.add(line);
+                }
             }
 
-            System.out.println("Loaded");
+            String strID = Integer.toString(id);
+            String strQuantity = Integer.toString(quantity);
+            boolean written = false;
 
-            if (ref.isEmpty()) {
-                System.out.println("File is empty, appending directly");
-                AddAP(newName, newID, newQuantity);
-                return;
+            for (int i = 0; i < ref.size(); i += 3) {
+                String blockID = ref.get(i + 1);
+                String blockQuantity = ref.get(i + 2);
+
+                if (!written && (blockID.equals(empty_ID) || blockQuantity.equals(empty_quan))) {
+                    ref.set(i, name);
+                    ref.set(i + 1, strID);
+                    ref.set(i + 2, strQuantity);
+                    written = true;
+                    break;
+                }
             }
 
-            if (!emptyBlock) {
-                ADD_LOAD.close();
-                AddAP(Name, Integer.toString(Id), Integer.toString(Quantity));
+            if (!written) {
+                ref.add(name);
+                ref.add(strID);
+                ref.add(strQuantity);
             }
 
-
-        while (true){
-            if(ref.get(index).equals(empty_quan) || ref.get(index).equals(empty_ID)){
-                System.out.println("the empty block is found");
-                emptyBlock = true;
-
-                int ITEM_INDEX = counter  - ID_INDEX; //16
-                int ID_INDEX = index;
-                int QUAN_IDX = counter + QUANTITY_INDEX;
-
-                ref.set(ID_INDEX, newID);
-                ref.set(QUAN_IDX, newQuantity);
-                ref.set(ITEM_INDEX, newName);
-
-
-                FinalName = ref.get(ID_INDEX);
-                FinalQuantity = ref.get(QUAN_IDX);
-                FinalID = ref.get(ID_INDEX);
-                ADD_LOAD.close();
-                Add_Write(FinalName, FinalQuantity, FinalID);
-
-                break;
-            }else {
-                counter++;
-                index++;
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+                for (int i = 0; i < ref.size(); i++) {
+                    bw.write(ref.get(i));
+                    bw.newLine();
+                }
             }
-        }
 
-        }catch(IOException e){
-            System.out.println("Error in Add Load");
+            System.out.println("Successfully added/updated item.");
+
+        } catch (IOException e) {
+            System.out.println("Error in Add_Load: " + e.getMessage());
         }
     }
 
 
 
+
     public void Add_Write(String item, String id, String quantity) {
-        //Disabled: For Reference.
-        /*try {
-            BufferedWriter write = new BufferedWriter(new FileWriter(filePath, true));
-            write.write(item);
-            write.newLine();
-            write.write(Integer.toString(id));
-            write.newLine();
-            write.write(Integer.toString(quantity));
-            write.newLine();
-            write.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-         */
         try(BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));){
             int index = 0;
             boolean isWritten = false;
@@ -216,7 +186,6 @@ abstract class DataManager {
             }
             System.out.println("Successfully updated the file.");
             ref.clear();
-            System.out.println("Debug: " + ref.get(ITEM_INDEX));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
