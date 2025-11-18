@@ -20,12 +20,19 @@ abstract class DataManager {
     String empty_ID = "0000";
     String empty_NAME = "Empty";
 
+    boolean emptyBlock = false;
+
     int Temp_ID;
 
-    public void Add_Load(int Id){
+    public void Add_Load(int Id, String Name, int Quantity) {
         try( BufferedReader ADD_LOAD = new BufferedReader(new FileReader(filePath))){
             int index = 0;
             int counter = 0;
+
+            String newName = Name;
+            String newQuantity = Integer.toString(Quantity);
+            String newID = Integer.toString(Id);
+
             ref.clear();
             while ((currentLine = ADD_LOAD.readLine()) != null) {
                 ref.add(currentLine);
@@ -37,11 +44,22 @@ abstract class DataManager {
         while (true){
             if(ref.get(index).equals(empty_quan) || ref.get(index).equals(empty_ID)){
                 System.out.println("the empty block is found");
+                emptyBlock = true;
 
-                int ITEM_INDEX = counter  - ID_INDEX;
+                int ITEM_INDEX = counter  - ID_INDEX; //16
                 int ID_INDEX = index;
                 int QUAN_IDX = counter + QUANTITY_INDEX;
 
+                ref.set(ID_INDEX, newID);
+                ref.set(QUAN_IDX, newQuantity);
+                ref.set(ITEM_INDEX, newName);
+
+
+                String FinalName = ref.get(ID_INDEX);
+                String FinalQuantity = ref.get(QUAN_IDX);
+                String FinalID = ref.get(ID_INDEX);
+
+                Add_Write(FinalName, FinalQuantity, FinalID);
 
                 break;
             }
@@ -54,7 +72,9 @@ abstract class DataManager {
         }
     }
 
-    public void Add_Write(int id, String item, int quantity) {
+
+
+    public void Add_Write(String id, String item, String quantity) {
         //Disabled: For Reference.
         /*try {
             BufferedWriter write = new BufferedWriter(new FileWriter(filePath, true));
@@ -73,8 +93,8 @@ abstract class DataManager {
         try{
             BufferedWriter ADD_WRITE_AP = new BufferedWriter(new FileWriter(filePath, true));
             BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));
-
             int index = 0;
+
 
 
         }catch (IOException e){

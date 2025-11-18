@@ -70,7 +70,7 @@ public class Service extends DataManager {
                     //userInputs.add(ID);
                     //Inv.put(ID, item);
                     //Quan.put(ID, quan);
-                    super.Add_Load(ID);
+                    super.Add_Load(ID, item, quan);
                     System.out.println("\nItem added successfully!");
                     System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
                     break;
