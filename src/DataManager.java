@@ -29,6 +29,10 @@ abstract class DataManager {
             int index = 0;
             int counter = 0;
 
+            String FinalName;
+            String FinalQuantity;
+            String FinalID;
+
             String newName = Name;
             String newQuantity = Integer.toString(Quantity);
             String newID = Integer.toString(Id);
@@ -55,16 +59,25 @@ abstract class DataManager {
                 ref.set(ITEM_INDEX, newName);
 
 
-                String FinalName = ref.get(ID_INDEX);
-                String FinalQuantity = ref.get(QUAN_IDX);
-                String FinalID = ref.get(ID_INDEX);
+                FinalName = ref.get(ID_INDEX);
+                FinalQuantity = ref.get(QUAN_IDX);
+                FinalID = ref.get(ID_INDEX);
 
                 Add_Write(FinalName, FinalQuantity, FinalID);
 
                 break;
+            }else{
+                String Append_item = Name;
+                String Append_quantity = Integer.toString(Quantity);
+                String Append_ID = Integer.toString(Id);
+                Add_Write(Append_item, Append_quantity, Append_ID);
             }
+
+
             index ++;
             counter ++;
+
+
         }
 
         }catch(IOException e){
@@ -129,6 +142,7 @@ abstract class DataManager {
             }
 
             System.out.println("Successfully wrote to the file.");
+            emptyBlock = false;
 
         }catch (IOException e){
             System.out.println("Error: File not found");
