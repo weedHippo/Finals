@@ -1,0 +1,18 @@
+Apple
+1000
+50
+Banana
+1001
+50
+Melon
+1002
+50
+Almods
+1003
+50
+Circus Peanuts
+1004
+50
+Cream Soda
+1005
+50

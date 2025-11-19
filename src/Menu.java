@@ -14,8 +14,7 @@ public class Menu {
             System.out.println("\t2. list Items");
             System.out.println("\t3. Remove an Item");
             System.out.println("\t4. Edit an Item");
-            System.out.println("\t5. Refresh");
-            System.out.println("\t6. Exit");
+            System.out.println("\t5. Exit");
             System.out.println("====================================");
             System.out.print("\tEnter your choice: ");
             int choice = input.nextInt();
@@ -34,9 +33,6 @@ public class Menu {
                     Edit();
                     break;
                 case 5:
-                    sr.preLoad();
-                    break;
-                case 6:
                     System.out.println("Goodbye!!");
                     System.out.println("And thank you :D");
                     System.exit(0);
@@ -81,35 +77,20 @@ public class Menu {
         }
     }
     public void Remove() {
-        while (true) {
-            System.out.println("Warning: you're about to remove an item from the inventory.");
-            System.out.println("Type Y to proceed, or N to return to the menu.");
-            System.out.print("Y/N: ");
+        while(true){
+            System.out.print("Enter the ID of the item you want to remove: ");
 
-            String choice = input.nextLine().trim();
-
-            if (choice.equalsIgnoreCase("N")) {
-                System.out.println("Returning to the main menu...");
-                break;
-            }
-
-            if (choice.equalsIgnoreCase("Y")) {
-                System.out.print("Enter the ID of the item you want to remove: ");
-
-                if (!input.hasNextInt()) {
-                    System.out.println("Invalid ID! Must be a number.");
-                    input.nextLine();
-                    continue;
-                }
-
-                int itemID = input.nextInt();
+            if (!input.hasNextInt()) {
+                System.out.println("Invalid ID! Must be a number.");
                 input.nextLine();
-
-                sr.remove(itemID);
-                break;
+                continue;
             }
 
-            System.out.println("Invalid choice. Please enter only Y or N.");
+            int itemID = input.nextInt();
+            input.nextLine();
+
+            sr.remove(itemID);
+            break;
         }
     }
 
