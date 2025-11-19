@@ -20,11 +20,7 @@ abstract class DataManager {
     String empty_ID = "0000";
     String empty_NAME = "Empty";
 
-    boolean emptyBlock = false;
-
-    int Temp_ID;
-
-    public void Add_Load(String name, int id, int quantity) {
+    public void AddToFile(String name, int id, int quantity) {
         try {
             // Load the file into memory
             ref.clear();
@@ -71,59 +67,6 @@ abstract class DataManager {
             System.out.println("Error in Add_Load: " + e.getMessage());
         }
     }
-
-
-
-
-    public void Add_Write(String item, String id, String quantity) {
-        try(BufferedWriter ADD_WRITE_OW = new BufferedWriter(new FileWriter(filePath));){
-            int index = 0;
-            boolean isWritten = false;
-            for (int i = index; i < ref.size(); i += BLOCK_SIZE){
-                String currentID = ref.get(i + ID_INDEX);
-                if (!isWritten && currentID.equals(empty_ID)) {
-                    ADD_WRITE_OW.write(item);
-                    ADD_WRITE_OW.newLine();
-                    ADD_WRITE_OW.write(id);
-                    ADD_WRITE_OW.newLine();
-                    ADD_WRITE_OW.write(quantity);
-                    ADD_WRITE_OW.newLine();
-                    isWritten = true;
-                } else {
-                    ADD_WRITE_OW.write(ref.get(i));
-                    ADD_WRITE_OW.newLine();
-                    ADD_WRITE_OW.write(ref.get(i + ID_INDEX));
-                    ADD_WRITE_OW.newLine();
-                    ADD_WRITE_OW.write(ref.get(i + REF_Quan_INDEX));
-                    ADD_WRITE_OW.newLine();
-                }
-
-            }
-            ADD_WRITE_OW.close();
-
-            System.out.println("Successfully wrote to the file.");
-            emptyBlock = false;
-            isWritten = false;
-
-        }catch (IOException e){
-            System.out.println("Error: File not found");
-        }
-    }
-
-    public void AddAP(String item, String id, String quantity){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write(item);
-            writer.newLine();
-            writer.write(id);
-            writer.newLine();
-            writer.write(quantity);
-            writer.newLine();
-        } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
-        }
-    }
-
-
 
     public void EditLoad(String item, int quantity, int id) {
         String newItemName = item;

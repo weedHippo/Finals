@@ -62,8 +62,9 @@ public class Service extends DataManager {
             while(true){
 
                 if(Inv.containsKey(ID)){
+                    System.out.println("\n");
                     System.out.println("Item with that ID already exists!");
-                    System.err.println("Try Again");
+                    System.out.println("Try Again");
                     break;
                 }
 
@@ -71,7 +72,7 @@ public class Service extends DataManager {
                     userInputs.add(ID);
                     Inv.put(ID, item);
                     Quan.put(ID, quan);
-                    super.Add_Load(item,ID,quan);
+                    super.AddToFile(item,ID,quan);
                     System.out.println("\nItem added successfully!");
                     System.out.println("\nID: " + ID + " | Name: " + item + " | Quantity: " + quan);
                     break;

@@ -16,3 +16,12 @@ Circus Peanuts
 Cream Soda
 1005
 50
+Black Tea
+1006
+50
+Coke
+1007
+50
+Vodka
+1008
+50
